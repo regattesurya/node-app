@@ -32,7 +32,7 @@ pipeline {
 
         stage('Push to Docker Hub') {
             steps {
-                withDockerRegistry(credentialsId: 'dockerhub-creds') {
+                withDockerRegistry(credentialsId: 'dockerhub-creds', url: 'https://index.docker.io/v1/') {
                     sh "docker push regattesurya/node-app:5"
                 }
             }
