@@ -26,14 +26,14 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh "docker build -t regattesurya/node-app:2 ."
+                sh "docker build -t regattesurya/node-app:5 ."
             }
         }
 
         stage('Push to Docker Hub') {
             steps {
                 withDockerRegistry(credentialsId: 'dockerhub-creds') {
-                    sh "docker push regattesurya/node-app:2"
+                    sh "docker push regattesurya/node-app:5"
                 }
             }
         }
