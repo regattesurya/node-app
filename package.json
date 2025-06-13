@@ -1,0 +1,14 @@
+{
+  "name": "node-ci-app",
+  "version": "1.0.0",
+  "description": "Sample Node.js app for CI pipeline",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Running tests...\" && exit 0"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
+
