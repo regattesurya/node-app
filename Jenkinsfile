@@ -1,0 +1,48 @@
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME = "regattesurya/node-ci-app"
+    }
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                git 'https://github.com/regattesurya/node-app.git' // Your GitHub repo
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                sh 'npm test'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh "docker build -t regattesurya/node-app:2 ."
+            }
+        }
+
+        stage('Push to Docker Hub') {
+            steps {
+                withDockerRegistry(credentialsId: 'dockerhub-creds') {
+                    sh "docker push regattesurya/node-app:2"
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            cleanWs()
+        }
+    }
+}
+
