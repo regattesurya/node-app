@@ -39,7 +39,7 @@ pipeline {
         }
         stage('Deploy Container') {
             steps {
-                sh "docker run -d -p 3000:3000 $IMAGE:${BUILD_NUMBER}"{
+                sh "docker run -d -p 3000:3000 node-app:5"{
                 }
             }
         }
@@ -47,7 +47,7 @@ pipeline {
     post {
         always {
             cleanWs()
+            }
         }
     }
 }
-
