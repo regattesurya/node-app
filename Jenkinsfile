@@ -37,7 +37,12 @@ pipeline {
                 }
             }
         }
-    }
+        stage('Deploy Container') {
+            steps {
+                sh "docker run -d -p 3000:3000 $IMAGE:${BUILD_NUMBER}"{
+                }
+            }
+        }
 
     post {
         always {
